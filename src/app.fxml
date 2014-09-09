@@ -1,4 +1,12 @@
-<?import javafx.scene.layout.GridPane?>
-<GridPane fx:controller="Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<!-- Notice that in the property fx:controller we're telling the view
+ that we'll need to interact with the Controller class. -->
+<VBox fx:controller="Controller" xmlns:fx="http://javafx.com/fxml" alignment="center">
+    <Label text="Click the button."></Label>
+
+    <!-- Assign the agreed upon ID to the fx:id property of the control.
+     The ID must match the name used for the member property in the controller. -->
+    <Button fx:id="clickableButton"></Button>
+</VBox>
