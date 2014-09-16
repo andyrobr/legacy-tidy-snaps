@@ -1,4 +1,106 @@
-<?import javafx.scene.layout.GridPane?>
-<GridPane fx:controller="Controller"
-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-</GridPane>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1919.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ImageView fitHeight="1080.0" fitWidth="1920.0" layoutX="-1.0">
+            <image>
+                <Image url="@ greyback.jpg" />
+            </image>
+            <effect>
+                <ColorAdjust brightness="-0.26" contrast="0.11" hue="0.26" saturation="-0.09" />
+            </effect>
+        </ImageView>
+        <Button id="selectbutton" layoutX="701.0" layoutY="506.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="518.0" textAlignment="CENTER" textFill="#21060608">
+            <font>
+                <Font name="AR BLANCA" size="36.0" />
+            </font>
+            <effect>
+                <ColorAdjust brightness="0.06" contrast="-0.2" hue="-1.0" saturation="-1.0">
+                    <input>
+                        <InnerShadow />
+                    </input>
+                </ColorAdjust>
+            </effect>
+        </Button>
+        <Button layoutX="705.0" layoutY="510.0" mnemonicParsing="false" prefHeight="97.0" prefWidth="510.0" text="SELECT FOLDER TO SEARCH" textAlignment="CENTER">
+            <font>
+                <Font name="Andalus" size="36.0" />
+            </font>
+            <effect>
+                <ColorAdjust brightness="-0.55" contrast="-0.03" hue="1.0" />
+            </effect>
+        </Button>
+        <Button id="selectbutton" layoutX="701.0" layoutY="654.0" mnemonicParsing="false" prefHeight="103.0" prefWidth="518.0" textAlignment="CENTER" textFill="#21060608">
+            <effect>
+                <ColorAdjust brightness="0.06" contrast="-0.2" hue="-1.0" saturation="-1.0">
+                    <input>
+                        <InnerShadow />
+                    </input>
+                </ColorAdjust>
+            </effect>
+            <font>
+                <Font name="AR BLANCA" size="36.0" />
+            </font>
+        </Button>
+        <Button layoutX="705.0" layoutY="657.0" mnemonicParsing="false" prefHeight="97.0" prefWidth="510.0" text="START SEARCH" textAlignment="CENTER">
+            <effect>
+                <ColorAdjust brightness="-0.55" contrast="-0.03" hue="1.0" />
+            </effect>
+            <font>
+                <Font name="Andalus" size="36.0" />
+            </font>
+        </Button>
+        <CheckBox indeterminate="true" layoutX="178.0" layoutY="905.0" mnemonicParsing="false" text="check here for automatic cleaning" textAlignment="CENTER" textFill="#f2e9e9">
+            <font>
+                <Font name="Rod" size="30.0" />
+            </font>
+            <effect>
+                <Lighting diffuseConstant="2.0" light="$null" specularConstant="0.81" specularExponent="30.86" surfaceScale="2.64">
+                    <bumpInput>
+                        <Shadow height="170.36" radius="90.14250000000001" width="192.21" />
+                    </bumpInput>
+                </Lighting>
+            </effect>
+        </CheckBox>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="100.0" layoutX="705.0" layoutY="508.0" stroke="TRANSPARENT" strokeType="INSIDE" width="512.0">
+            <fill>
+                <LinearGradient endX="0.693121693121693" endY="0.07407407407407407" startX="0.6931216931216931" startY="0.9312169312169312">
+                    <stops>
+                        <Stop color="#0000008a" />
+                        <Stop color="#0000003a" offset="0.10121457489878542" />
+                        <Stop color="#ffffff20" offset="0.5080971659919028" />
+                        <Stop color="#00000027" offset="0.8341008128071208" />
+                        <Stop color="#00000089" offset="1.0" />
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" height="100.0" layoutX="703.0" layoutY="656.0" stroke="TRANSPARENT" strokeType="INSIDE" width="512.0">
+            <fill>
+                <LinearGradient endX="0.693121693121693" endY="0.07407407407407407" startX="0.6931216931216931" startY="0.9312169312169312">
+                    <stops>
+                        <Stop color="#0000008a" />
+                        <Stop color="#0000003a" offset="0.10121457489878542" />
+                        <Stop color="#ffffff20" offset="0.5080971659919028" />
+                        <Stop color="#00000027" offset="0.8341008128071208" />
+                        <Stop color="#00000089" offset="1.0" />
+                    </stops>
+                </LinearGradient>
+            </fill>
+        </Rectangle>
+        <ImageView fitHeight="1096.0" fitWidth="2034.0" layoutX="-21.0" layoutY="-268.0">
+            <image>
+                <Image url="@glass%20title.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>
