@@ -25,7 +25,7 @@ public class Photo {
     }
 
     public Photo(String url, Image image) {
-        url = this.url;
-        image = this.image;
+        this.url = url;
+        this.image = image;
     }
 }
