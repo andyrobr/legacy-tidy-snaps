@@ -22,7 +22,7 @@ public class LocalPhotoRepository implements PhotoRepository
         return new PhotoIterator(listOfPhotos);
     }
 
-    private class PhotoIterator implements Iterator<Photo>
+    static class PhotoIterator implements Iterator<Photo>
     {
         int listIndex = 0;
         private List<Photo> items;
