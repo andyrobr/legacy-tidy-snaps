@@ -19,17 +19,22 @@ public class LocalPhotoRepository implements PhotoRepository
 
     @Override
     public Iterator<Photo> iterator() {
-        return new PhotoIterator();
+        return new PhotoIterator(listOfPhotos);
     }
 
     private class PhotoIterator implements Iterator<Photo>
     {
         int listIndex = 0;
+        private List<Photo> items;
+
+        public PhotoIterator(List<Photo> items) {
+            this.items = items;
+        }
 
         @Override
         public boolean hasNext()
         {
-            if(listIndex == listOfPhotos.size())
+            if(listIndex == items.size())
             {
                 return false;
             }   else {
@@ -44,7 +49,7 @@ public class LocalPhotoRepository implements PhotoRepository
         {
             if(this.hasNext() )
             {
-                return listOfPhotos.get(listIndex++);
+                return items.get(listIndex++);
             }
             else
             {
