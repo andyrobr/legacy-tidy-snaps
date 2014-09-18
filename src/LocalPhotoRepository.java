@@ -1,6 +1,13 @@
+import javax.imageio.ImageIO;
+import java.io.IOException;
+import java.nio.file.FileVisitOption;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class LocalPhotoRepository implements PhotoRepository
 {
@@ -18,6 +25,32 @@ public class LocalPhotoRepository implements PhotoRepository
     @Override
     public Iterator<Photo> iterator() {
         return new PhotoIterator(listOfPhotos);
+    }
+
+    @Override
+    public Stream<Photo> stream() throws IOException {
+        Path root = Paths.get(this.folder);
+
+        Stream<Path> files;
+
+        if (this.recursive) {
+            files = Files.walk(root);
+        } else {
+            files = Files.walk(root, 1);
+        }
+
+        return files.filter(path -> path.toString().toLowerCase().endsWith("png"))
+                .map(path -> {
+                    try {
+                        if (!path.isAbsolute()) {
+                            path = path.toAbsolutePath();
+                        }
+                        return new Photo(path.toString(), ImageIO.read(path.toFile()));
+                    } catch (IOException e) {
+                    }
+
+                    return null;
+                });
     }
 
     static class PhotoIterator implements Iterator<Photo>
