@@ -1,4 +1,4 @@
-import javafx.scene.image.Image;
+import java.awt.*;
 
 /**
  * Created by Fateh on 9/11/2014.
