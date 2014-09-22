@@ -39,7 +39,9 @@ public class LocalPhotoRepository implements PhotoRepository
             files = Files.walk(root, 1);
         }
 
-        return files.filter(path -> path.toString().toLowerCase().endsWith("png"))
+        return files
+                .filter(path -> path.toString().toLowerCase().endsWith("png"))
+                .filter(path -> path.toString().toLowerCase().endsWith("jpeg"))
                 .map(path -> {
                     try {
                         if (!path.isAbsolute()) {

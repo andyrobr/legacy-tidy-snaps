@@ -140,7 +140,13 @@ public class Controller implements Initializable {
             targetPath = Paths.get(target, relativePathStr);
             Files.createDirectories(targetPath.getParent());
 
-            ImageIO.write((java.awt.image.RenderedImage) photo.getImage(), "png", targetPath.toFile());
+            if(targetPath.toString().toLowerCase().endsWith("jpeg")) {
+                ImageIO.write((java.awt.image.RenderedImage) photo.getImage(), "jpeg", targetPath.toFile());
+            }
+            else if (targetPath.toString().toLowerCase().endsWith("png")) {
+                ImageIO.write((java.awt.image.RenderedImage) photo.getImage(), "png", targetPath.toFile());
+            }
         }
     }
 }
+// add support for other extentions
