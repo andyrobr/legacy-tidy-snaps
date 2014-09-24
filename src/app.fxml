@@ -17,8 +17,11 @@
          <image>
             <Image url="@SimpleBlu.jpg" />
          </image>
+         <effect>
+            <ColorAdjust brightness="-0.14" />
+         </effect>
       </ImageView>
-      <ImageView fitHeight="415.0" fitWidth="1061.0" layoutX="110.0" layoutY="14.0">
+      <ImageView fitHeight="415.0" fitWidth="1061.0" layoutX="110.0" layoutY="14.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="109.0">
          <image>
             <Image url="@WHITE%20swish.png" />
          </image>
@@ -35,7 +38,7 @@
             <Font name="Gabriola" size="30.0" />
          </font>
       </CheckBox>
-      <Button contentDisplay="CENTER" layoutX="529.0" layoutY="372.0" mnemonicParsing="false" text="SELECT FOLDER TO SEARCH" textAlignment="CENTER">
+      <Button fx:id="folderBrowseBtn" contentDisplay="CENTER" layoutX="529.0" layoutY="372.0" mnemonicParsing="false" text="SELECT FOLDER TO SEARCH" textAlignment="CENTER">
          <font>
             <Font name="AR CHRISTY" size="13.0" />
          </font>
@@ -47,7 +50,7 @@
             </DropShadow>
          </effect>
       </Button>
-      <Button contentDisplay="CENTER" layoutX="587.0" layoutY="440.0" mnemonicParsing="false" text="START" textAlignment="CENTER">
+      <Button fx:id="startBtn" contentDisplay="CENTER" layoutX="587.0" layoutY="440.0" mnemonicParsing="false" text="START" textAlignment="CENTER">
          <effect>
             <DropShadow color="#fcfafa" radius="10.91" spread="0.37" width="24.64">
                <input>
