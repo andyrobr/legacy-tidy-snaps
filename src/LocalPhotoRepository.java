@@ -3,12 +3,20 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Stream;
 
 public class LocalPhotoRepository implements PhotoRepository
 {
     public String folder;
     public boolean recursive;
+    public static Set<String> supportedExtensions = new HashSet();
+
+    static {
+        supportedExtensions.add("png");
+        supportedExtensions.add("jpg");
+    }
 
     public LocalPhotoRepository(String folder, boolean recursive)
     {
@@ -29,8 +37,7 @@ public class LocalPhotoRepository implements PhotoRepository
         }
 
         return files
-                .filter(path -> path.toString().toLowerCase().endsWith("png"))
-                .filter(path -> path.toString().toLowerCase().endsWith("jpeg"))
+                .filter(path -> filterImageOnly(path))
                 .map(path -> {
                     try {
                         if (!path.isAbsolute()) {
@@ -42,5 +49,11 @@ public class LocalPhotoRepository implements PhotoRepository
 
                     return null;
                 });
+    }
+    private boolean filterImageOnly(Path path){
+        String pathStr = path.toString();
+        String extension = pathStr.substring(pathStr.lastIndexOf('.')+1);
+
+        return supportedExtensions.contains(extension);
     }
 }
