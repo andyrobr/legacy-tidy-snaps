@@ -3,10 +3,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -28,16 +31,16 @@ public class Controller implements Initializable {
     private String targetPathStr;
     private boolean recursive = true;
 
-    private JFileChooser fileChooser;
+    private DirectoryChooser directoryChooser;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        fileChooser = new JFileChooser();
-        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        directoryChooser = new DirectoryChooser();
 
         EventHandler<ActionEvent> onFolderBrowseBtn = (ActionEvent e) -> {
-            if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                sourcePathStr = fileChooser.getSelectedFile().getPath();
+            File directory = directoryChooser.showDialog(null);
+            if (directory != null) {
+                sourcePathStr = directory.getAbsolutePath();
             }
         };
 
