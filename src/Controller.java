@@ -1,5 +1,8 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -32,19 +35,22 @@ public class Controller implements Initializable {
         fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
-        folderBrowseBtn.addActionListener(e -> {
+        EventHandler<ActionEvent> onFolderBrowseBtn = (ActionEvent e) -> {
             if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 sourcePathStr = fileChooser.getSelectedFile().getPath();
             }
-        });
+        };
 
-        startBtn.addActionListener(e -> {
+        EventHandler<ActionEvent> onStartBtn = (ActionEvent e) -> {
             try {
                 copyDistinctPhotos(sourcePathStr, targetPathStr, recursive);
             } catch (IOException e1) {
                 System.err.println("");
             }
-        });
+        };
+
+        folderBrowseBtn.setOnAction(onFolderBrowseBtn);
+        startBtn.setOnAction(onStartBtn);
     }
 
     /***
