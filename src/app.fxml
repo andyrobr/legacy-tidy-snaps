@@ -11,7 +11,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:controller="Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
       <ImageView fitHeight="799.0" fitWidth="1280.0" layoutY="1.0">
          <image>
@@ -28,39 +28,48 @@
          <effect>
             <Bloom threshold="0.03">
                <input>
-                  <Glow level="0.48" />
+                  <DropShadow blurType="GAUSSIAN" height="64.72" radius="24.572499999999998" spread="0.21" width="35.57" />
                </input>
             </Bloom>
          </effect>
       </ImageView>
-      <CheckBox indeterminate="true" layoutX="119.0" layoutY="657.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="324.0" text="Check for automatic cleaning" textAlignment="CENTER" textFill="#7c7a7a" AnchorPane.bottomAnchor="102.0" AnchorPane.leftAnchor="119.0" AnchorPane.rightAnchor="837.0">
+      <CheckBox layoutX="328.0" layoutY="443.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="324.0" text="Check for automatic delete" textAlignment="CENTER" textFill="#171717" AnchorPane.bottomAnchor="316.0" AnchorPane.leftAnchor="328.0" AnchorPane.rightAnchor="628.0">
          <font>
             <Font name="Gabriola" size="30.0" />
          </font>
       </CheckBox>
-      <Button fx:id="folderBrowseBtn" contentDisplay="CENTER" layoutX="529.0" layoutY="372.0" mnemonicParsing="false" text="SELECT FOLDER TO SEARCH" textAlignment="CENTER">
+      <Button fx:id="folderBrowseBtn" contentDisplay="CENTER" layoutX="820.0" layoutY="358.0" lineSpacing="100.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="94.0" scaleShape="false" text="Browse...">
          <font>
-            <Font name="AR CHRISTY" size="13.0" />
+            <Font name="AR CHRISTY" size="18.0" />
          </font>
          <effect>
-            <DropShadow color="#fcfafa" radius="10.91" spread="0.37" width="24.64">
+            <DropShadow color="#e1dada" height="24.19" radius="11.7075" spread="0.37" width="24.64">
                <input>
-                  <InnerShadow choke="0.17" color="#cfcccc" radius="11.82" width="28.28" />
+                  <InnerShadow choke="0.17" color="#cfcccc" height="27.37" radius="13.412500000000001" width="28.28" />
                </input>
             </DropShadow>
          </effect>
       </Button>
-      <Button fx:id="startBtn" contentDisplay="CENTER" layoutX="587.0" layoutY="440.0" mnemonicParsing="false" text="START" textAlignment="CENTER">
+      <Button fx:id="startBtn" contentDisplay="CENTER" layoutX="825.0" layoutY="543.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="90.0" text="START" textAlignment="CENTER">
          <effect>
-            <DropShadow color="#fcfafa" radius="10.91" spread="0.37" width="24.64">
+            <DropShadow color="#f8f6f6c9" height="24.58" radius="11.805" spread="0.37" width="24.64">
                <input>
-                  <InnerShadow choke="0.17" color="#cfcccc" radius="11.82" width="28.28" />
+                  <InnerShadow choke="0.17" color="#e1d6d6" height="28.16625" radius="13.611562500000002" width="28.28" />
                </input>
             </DropShadow>
          </effect>
          <font>
-            <Font name="AR CHRISTY" size="13.0" />
+            <Font name="AR CHRISTY" size="18.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
       </Button>
+      <Label fx:id="pathBox" layoutX="327.0" layoutY="355.0" prefHeight="45.0" prefWidth="452.0" text="SELECT FOLDER">
+         <font>
+             <Font name="AR CHRISTY" size="24.0" />
+         </font>
+      </Label>
+      <ProgressBar layoutX="310.0" layoutY="541.0" prefHeight="4.0" prefWidth="365.0" progress="0.0" />
    </children>
 </AnchorPane>
