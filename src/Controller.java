@@ -18,8 +18,10 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 public class Controller implements Initializable {
+    private static final Logger LOGGER = Logger.getLogger(Controller.class.getName());
 
     @FXML
     private Button folderBrowseBtn;
@@ -32,7 +34,6 @@ public class Controller implements Initializable {
     private boolean recursive = true;
 
     private DirectoryChooser directoryChooser;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         directoryChooser = new DirectoryChooser();
@@ -41,14 +42,16 @@ public class Controller implements Initializable {
             File directory = directoryChooser.showDialog(null);
             if (directory != null) {
                 sourcePathStr = directory.getAbsolutePath();
+                LOGGER.info("Selected folder on Folder Browser Button Source Path: '" + sourcePathStr + "'");
             }
         };
 
         EventHandler<ActionEvent> onStartBtn = (ActionEvent e) -> {
             try {
+                LOGGER.info("Selected folder on Start Button Source Path: '" + sourcePathStr + "' Target Path: '" + targetPathStr + "'");
                 copyDistinctPhotos(sourcePathStr, targetPathStr, recursive);
             } catch (IOException e1) {
-                System.err.println("");
+                e1.printStackTrace();
             }
         };
 
@@ -95,9 +98,11 @@ public class Controller implements Initializable {
      */
     private String getRelativePath(String path, String relativeTo) {
         int index = path.indexOf(relativeTo);
-
-        if (index == 0)
+        LOGGER.info("Selected folder Path: '"+ path + "' Path Relative To: '" + relativeTo + "'" );
+        if (index == 0) {
+            LOGGER.info("Selected folder Path: '" + path + "' " + "Path Relative To: '" + relativeTo + "' " + "Index: '" + index + "'");
             return path.substring(relativeTo.length());
+        }
         else
             return path;
     }
@@ -112,21 +117,21 @@ public class Controller implements Initializable {
      * @throws IOException
      */
     void copyDistinctPhotos(String source, String target, boolean recursive) throws IOException {
-
         Map<String, Photo> distinctPhotos = new HashMap<>();
 
         PhotoRepository photos = new LocalPhotoRepository(source, recursive);
 
         photos.stream()
                 .forEach(photo -> {
+                    LOGGER.info("Selected folder: Source Path: '" + source + "' Target Path: '" + target + "'" );
                     String hash = computeHash(photo.getImage());
-
                     // If the hash is already associated to some photo in the
                     // dictinctPhotos map, then that means we've already
                     // encountered this photo (we have a duplicate). We need
                     // to handle the conflict by keeping the best image in
                     // the map.
                     if (distinctPhotos.containsKey(hash)) {
+                        LOGGER.info("Distinct Photo '" + distinctPhotos.values() + "' with Hash: '" + hash);
                         Photo other = distinctPhotos.get(hash);
                         distinctPhotos.put(hash, bestPhoto(photo, other));
                     }
@@ -148,7 +153,8 @@ public class Controller implements Initializable {
 
             targetPath = Paths.get(target, relativePathStr);
             Files.createDirectories(targetPath.getParent());
-
+            LOGGER.info("Distinct Photo '" + distinctPhotos.values() + "Absolute Path: '" + absolutePathStr + "Relative Path '"
+                    + relativePathStr+ "' " + "Target Path '" + targetPathStr + "'" );
             if(targetPath.toString().toLowerCase().endsWith("jpeg")) {
                 ImageIO.write((java.awt.image.RenderedImage) photo.getImage(), "jpeg", targetPath.toFile());
             }
