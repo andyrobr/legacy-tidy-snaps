@@ -4,17 +4,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -143,25 +138,7 @@ public class Controller implements Initializable {
         // distinctPhotos should now be populated with distinct photos from the
         // source folder specified. We'll proceed to copy those images into the
         // target folder (don't delete photos for now, let the user do that).
-        for (Photo photo : distinctPhotos.values()) {
-            absolutePathStr = photo.getUrl();
 
-            // We're going to find the path of the photo relative to the source
-            // directory. That way, we know where in the target directory to
-            // place that photo.
-            relativePathStr = getRelativePath(absolutePathStr, source);
-
-            targetPath = Paths.get(target, relativePathStr);
-            Files.createDirectories(targetPath.getParent());
-            LOGGER.info("Distinct Photo '" + distinctPhotos.values() + "Absolute Path: '" + absolutePathStr + "Relative Path '"
-                    + relativePathStr+ "' " + "Target Path '" + targetPathStr + "'" );
-            if(targetPath.toString().toLowerCase().endsWith("jpeg")) {
-                ImageIO.write((java.awt.image.RenderedImage) photo.getImage(), "jpeg", targetPath.toFile());
-            }
-            else if (targetPath.toString().toLowerCase().endsWith("png")) {
-                ImageIO.write((java.awt.image.RenderedImage) photo.getImage(), "png", targetPath.toFile());
-            }
-        }
     }
 }
 // add support for other extentions
