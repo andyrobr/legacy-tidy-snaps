@@ -25,7 +25,6 @@ public class Controller implements Initializable {
     private Button startBtn;
 
     private String sourcePathStr;
-    private String targetPathStr;
     private boolean recursive = true;
 
     private DirectoryChooser directoryChooser;
@@ -43,8 +42,8 @@ public class Controller implements Initializable {
 
         EventHandler<ActionEvent> onStartBtn = (ActionEvent e) -> {
             try {
-                LOGGER.info("Selected folder on Start Button Source Path: '" + sourcePathStr + "' Target Path: '" + targetPathStr + "'");
-                copyDistinctPhotos(sourcePathStr, targetPathStr, recursive);
+                LOGGER.info("Selected folder on Start Button Source Path: '" + sourcePathStr +  "'");
+                copyDistinctPhotos(sourcePathStr, recursive);
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
@@ -83,42 +82,21 @@ public class Controller implements Initializable {
     }
 
     /***
-     * Returns the path of a file or directory relative to some directory. The
-     * relative path is produced iff path in a subdirectory of relativeTo;
-     * otherwise, path is going to be returned.
-     *
-     * @param path
-     * @param relativeTo
-     * @return
-     */
-    private String getRelativePath(String path, String relativeTo) {
-        int index = path.indexOf(relativeTo);
-        LOGGER.info("Selected folder Path: '"+ path + "' Path Relative To: '" + relativeTo + "'" );
-        if (index == 0) {
-            LOGGER.info("Selected folder Path: '" + path + "' " + "Path Relative To: '" + relativeTo + "' " + "Index: '" + index + "'");
-            return path.substring(relativeTo.length());
-        }
-        else
-            return path;
-    }
-
-    /***
      * Copies the distinct photos in source to target. No files are harmed in
      * the process.
      *
      * @param source
-     * @param target
      * @param recursive
      * @throws IOException
      */
-    void copyDistinctPhotos(String source, String target, boolean recursive) throws IOException {
+    void copyDistinctPhotos(String source, boolean recursive) throws IOException {
         Map<String, Photo> distinctPhotos = new HashMap<>();
 
         PhotoRepository photos = new LocalPhotoRepository(source, recursive);
 
         photos.stream()
                 .forEach(photo -> {
-                    LOGGER.info("Selected folder: Source Path: '" + source + "' Target Path: '" + target + "'" );
+                    LOGGER.info("Selected folder: Source Path: '" + source + "'" );
                     String hash = computeHash(photo.getImage());
                     // If the hash is already associated to some photo in the
                     // dictinctPhotos map, then that means we've already
@@ -131,9 +109,6 @@ public class Controller implements Initializable {
                         distinctPhotos.put(hash, bestPhoto(photo, other));
                     }
                 });
-
-        Path targetPath;
-        String absolutePathStr, relativePathStr;
 
         // distinctPhotos should now be populated with distinct photos from the
         // source folder specified. We'll proceed to copy those images into the
