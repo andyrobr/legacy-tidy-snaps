@@ -28,15 +28,26 @@ public class Controller implements Initializable {
     private boolean recursive = true;
 
     private DirectoryChooser directoryChooser;
+
+    private ImagePHash imageHasher = new ImagePHash();
+    private boolean isDialogVisible = false;
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         directoryChooser = new DirectoryChooser();
 
         EventHandler<ActionEvent> onFolderBrowseBtn = (ActionEvent e) -> {
-            File directory = directoryChooser.showDialog(null);
-            if (directory != null) {
-                sourcePathStr = directory.getAbsolutePath();
-                LOGGER.info("Selected folder on Folder Browser Button Source Path: '" + sourcePathStr + "'");
+            if (!isDialogVisible)
+            {
+                isDialogVisible = true;
+                File directory = directoryChooser.showDialog(folderBrowseBtn.getScene().getWindow());
+                isDialogVisible = false;
+                if (directory != null)
+                {
+                    sourcePathStr = directory.getAbsolutePath();
+                    LOGGER.info("Selected folder on Folder Browser Button Source Path: '" + sourcePathStr + "'");
+                }
             }
         };
 
@@ -76,6 +87,7 @@ public class Controller implements Initializable {
     Photo bestPhoto(Photo a, Photo b) {
         // TODO: Just output a message for the time being. We'll allow the user
         // to pick which photo to keep later on.
+//        imageHasher.getHash(a.getImage().g)
         System.out.printf("Found duplicate photo; '%s' and '%s'\n", a.getUrl(), b.getUrl());
 
         return a;
