@@ -1,10 +1,15 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -110,6 +115,44 @@ public class Controller implements Initializable {
         // to pick which photo to keep later on.
         
         System.out.printf("Found duplicate photo; '%s' and '%s'\n", a.getUrl(), b.getUrl());
+
+        DialogController dialogController = new DialogController();
+        dialogController.setPhotos(a, b);
+
+        Parent root = null;
+        try
+        {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("dialogue.fxml"));
+            fxmlLoader.setController(dialogController);
+            root = fxmlLoader.load();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        Scene scene = new Scene(root, 1280, 800);
+
+        Stage dialog = new Stage();
+        dialog.initStyle(StageStyle.UTILITY);
+        dialog.setScene(scene);
+        dialog.showAndWait();
+
+//        try
+//        {
+//            Parent root = FXMLLoader.load(getClass().getResource("dialogue.fxml"));
+//
+//            Scene scene = new Scene(root, 320, 240);
+//
+//            Stage dialog = new Stage();
+//            dialog.initStyle(StageStyle.UTILITY);
+//            dialog.setScene(scene);
+//            dialog.show();
+//
+//        } catch (IOException e)
+//        {
+//            e.printStackTrace();
+//        }
 
         return a;
     }

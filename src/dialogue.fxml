@@ -26,7 +26,7 @@
       <Label fx:id="labelPixel1" layoutX="84.0" layoutY="557.0" prefHeight="32.0" prefWidth="371.0" text="Pixel" />
       <Label fx:id="labelRes1" layoutX="84.0" layoutY="597.0" prefHeight="32.0" prefWidth="371.0" text="Resolution" />
       <Label fx:id="labelDate1" layoutX="84.0" layoutY="639.0" prefHeight="32.0" prefWidth="371.0" text="Date" />
-      <Label fx:id="labelPixel2" layoutX="807.0" layoutY="557.0" prefHeight="32.0" prefWidth="371.0" text="PIxel" />
+      <Label fx:id="labelPixel2" layoutX="807.0" layoutY="557.0" prefHeight="32.0" prefWidth="371.0" text="Pixel" />
       <Label fx:id="labelRes2" layoutX="807.0" layoutY="597.0" prefHeight="32.0" prefWidth="371.0" text="Resolution" />
       <Label fx:id="labelDate2" layoutX="807.0" layoutY="639.0" prefHeight="32.0" prefWidth="371.0" text="Date" />
    </children>
