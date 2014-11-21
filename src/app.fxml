@@ -1,87 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.effect.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="640.0" minWidth="480.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+
    <children>
-      <ImageView fitHeight="800.0" fitWidth="1280.0" layoutY="1.0">
+      <ImageView fitHeight="800.0" fitWidth="1280.0">
          <image>
-            <Image url="@SimpleBlu.jpg" />
+            <Image url="@sparkle.jpg" />
 
          </image>
-         <effect>
-            <ColorAdjust brightness="-0.14" />
-         </effect>
       </ImageView>
-      <ImageView fitHeight="415.0" fitWidth="1061.0" layoutX="110.0" layoutY="14.0" AnchorPane.leftAnchor="110.0" AnchorPane.rightAnchor="109.0">
+      <Circle fill="#ababab00" layoutX="641.0" layoutY="486.0" radius="309.0" stroke="#9c9a9a4e" strokeWidth="9.0">
+         <effect>
+            <DisplacementMap>
+               <mapData>
+                  <FloatMap />
+               </mapData>
+            </DisplacementMap>
+         </effect>
+
+      </Circle>
+      <Circle fill="#fcfeff88" layoutX="640.0" layoutY="485.0" opacity="0.7" radius="295.0" stroke="TRANSPARENT" strokeType="INSIDE">
+         <effect>
+            <Blend mode="MULTIPLY" opacity="0.0" />
+         </effect>
+      </Circle>
+      <Circle fill="#a2a2a300" layoutX="641.0" layoutY="485.0" radius="322.0" stroke="#96939322" strokeType="INSIDE" strokeWidth="2.0" />
+      <ImageView fitHeight="357.0" fitWidth="1255.0" layoutX="12.0" layoutY="-6.0">
          <image>
-            <Image url="@WHITE%20swish.png" />
+             <Image url="@WHITE%20swish.png" />
          </image>
-         <effect>
-            <Bloom threshold="0.03">
-               <input>
-                  <DropShadow blurType="GAUSSIAN" height="64.72" radius="24.572499999999998" spread="0.21" width="35.57" />
-               </input>
-            </Bloom>
-         </effect>
       </ImageView>
-      <GridPane layoutX="267.0" layoutY="318.0" prefHeight="282.0" prefWidth="785.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="267.0" AnchorPane.rightAnchor="228.0" AnchorPane.topAnchor="318.0">
+      <GridPane layoutX="474.0" layoutY="180.0" prefHeight="545.0" prefWidth="331.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="512.5" minWidth="10.0" prefWidth="482.5" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="337.0" minWidth="10.0" prefWidth="294.5" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="129.0" minHeight="0.0" prefHeight="79.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="149.5" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="146.0" minHeight="10.0" prefHeight="59.5" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="104.0" minHeight="10.0" prefHeight="63.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="155.0" minHeight="10.0" prefHeight="155.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ProgressBar prefHeight="12.0" prefWidth="441.0" progress="0.0" GridPane.rowIndex="2">
+            <Button fx:id="startBtn" mnemonicParsing="false" prefHeight="109.0" prefWidth="117.0" stylesheets="@test.css" text="START" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="111.0" />
+               </GridPane.margin>
+            </Button>
+            <CheckBox alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="310.0" text="Check if you want automatic delete" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="17.0" />
+               </font>
                <opaqueInsets>
                   <Insets />
-               </opaqueInsets></ProgressBar>
-            <CheckBox mnemonicParsing="false" prefHeight="41.0" prefWidth="328.0" text="Check for automatic delete" textAlignment="CENTER" textFill="#171717" GridPane.rowIndex="1">
-               <font>
-                  <Font name="Gabriola" size="30.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="55.0" />
-               </GridPane.margin>
+               </opaqueInsets>
             </CheckBox>
-            <Button fx:id="startBtn" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="41.0" prefWidth="90.0" text="START" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font name="AR CHRISTY" size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="NONE" />
-               </cursor>
+            <Button fx:id="folderBrowseBtn" alignment="CENTER" mnemonicParsing="false" stylesheets="@Browse.css" text="Browse..." GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets bottom="50.0" left="115.0" />
+               </GridPane.margin>
             </Button>
-            <Button fx:id="folderBrowseBtn" contentDisplay="CENTER" lineSpacing="100.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="94.0" scaleShape="false" text="Browse..." GridPane.columnIndex="1">
-               <font>
-                  <Font name="AR CHRISTY" size="18.0" />
-               </font>
-            </Button>
-            <Label fx:id="pathBox" prefHeight="45.0" prefWidth="452.0" text="SELECT FOLDER">
-               <font>
-                   <Font name="AR CHRISTY" size="24.0" />
-               </font>
+            <Label fx:id="pathBox" alignment="CENTER" prefHeight="18.0" prefWidth="331.0" text="Select Folder" GridPane.rowIndex="1">
                <padding>
-                  <Insets left="103.0" />
+                  <Insets top="10.0" />
                </padding>
+               <GridPane.margin>
+                  <Insets top="50.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Label>
+            <ProgressIndicator prefWidth="331.0" progress="0.0">
+               <GridPane.margin>
+                  <Insets bottom="20.0" top="20.0" />
+               </GridPane.margin>
+            </ProgressIndicator>
          </children>
-         <padding>
-            <Insets left="25.0" />
-         </padding>
+
       </GridPane>
    </children>
 </AnchorPane>

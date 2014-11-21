@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView id="ResLabel" fx:id="dialogueBack" fitHeight="800.0" fitWidth="1280.0">
+      <ImageView fitHeight="800.0" fitWidth="1280.0">
          <image>
-            <Image url="@SimpleBlu2.jpg" />
+            <Image url="@sparkle.jpg" />
          </image>
-         <effect>
-            <ColorAdjust brightness="-0.2" contrast="0.17" />
-         </effect>
       </ImageView>
-      <Label fx:id="resLabel1" layoutX="146.0" layoutY="484.0" prefHeight="59.0" prefWidth="473.0" text="Resolution" textAlignment="CENTER">
-         <font>
-            <Font name="AR CHRISTY" size="30.0" />
-         </font>
-      </Label>
-      <Label fx:id="resLabel2" layoutX="671.0" layoutY="484.0" prefHeight="59.0" prefWidth="480.0" text="Resolution" textAlignment="CENTER">
-         <font>
-            <Font name="AR CHRISTY" size="30.0" />
-         </font>
-      </Label>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="477.0" layoutX="48.0" layoutY="55.0" stroke="#00000057" strokeType="INSIDE" strokeWidth="3.0" width="503.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1f93ff00" height="477.0" layoutX="727.0" layoutY="55.0" stroke="#00000053" strokeType="INSIDE" strokeWidth="3.0" width="503.0" />
+      <Rectangle fx:id="viewArea1" arcHeight="5.0" arcWidth="5.0" fill="#66666688" height="459.0" layoutX="58.0" layoutY="64.0" stroke="TRANSPARENT" strokeType="INSIDE" width="483.0" />
+      <Rectangle fx:id="viewArea2" arcHeight="5.0" arcWidth="5.0" fill="#66666688" height="459.0" layoutX="738.0" layoutY="64.0" stroke="TRANSPARENT" strokeType="INSIDE" width="483.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#66666688" height="32.0" layoutX="84.0" layoutY="557.0" stroke="TRANSPARENT" strokeType="INSIDE" width="371.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#66666688" height="32.0" layoutX="84.0" layoutY="597.0" stroke="TRANSPARENT" strokeType="INSIDE" width="371.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#66666688" height="32.0" layoutX="84.0" layoutY="639.0" stroke="TRANSPARENT" strokeType="INSIDE" width="371.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#66666688" height="32.0" layoutX="807.0" layoutY="639.0" stroke="TRANSPARENT" strokeType="INSIDE" width="371.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#66666688" height="32.0" layoutX="807.0" layoutY="597.0" stroke="TRANSPARENT" strokeType="INSIDE" width="371.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#66666688" height="32.0" layoutX="807.0" layoutY="557.0" stroke="TRANSPARENT" strokeType="INSIDE" width="371.0" />
+      <Label fx:id="labelPixel1" layoutX="84.0" layoutY="557.0" prefHeight="32.0" prefWidth="371.0" text="Pixel" />
+      <Label fx:id="labelRes1" layoutX="84.0" layoutY="597.0" prefHeight="32.0" prefWidth="371.0" text="Resolution" />
+      <Label fx:id="labelDate1" layoutX="84.0" layoutY="639.0" prefHeight="32.0" prefWidth="371.0" text="Date" />
+      <Label fx:id="labelPixel2" layoutX="807.0" layoutY="557.0" prefHeight="32.0" prefWidth="371.0" text="PIxel" />
+      <Label fx:id="labelRes2" layoutX="807.0" layoutY="597.0" prefHeight="32.0" prefWidth="371.0" text="Resolution" />
+      <Label fx:id="labelDate2" layoutX="807.0" layoutY="639.0" prefHeight="32.0" prefWidth="371.0" text="Date" />
    </children>
 </AnchorPane>
