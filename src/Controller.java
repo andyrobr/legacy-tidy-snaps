@@ -3,11 +3,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.DirectoryChooser;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
+import java.awt.image.RenderedImage;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -23,6 +25,9 @@ public class Controller implements Initializable {
 
     @FXML
     private Button startBtn;
+
+    @FXML
+    private Label pathBox;
 
     private String sourcePathStr;
     private boolean recursive = true;
@@ -46,6 +51,7 @@ public class Controller implements Initializable {
                 if (directory != null)
                 {
                     sourcePathStr = directory.getAbsolutePath();
+                    pathBox.setText(sourcePathStr);
                     LOGGER.info("Selected folder on Folder Browser Button Source Path: '" + sourcePathStr + "'");
                 }
             }
@@ -71,8 +77,23 @@ public class Controller implements Initializable {
      * @return
      */
     String computeHash(Image image) {
-        // TODO: Implement pHash algorithm.
-        return "";
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        try
+        {
+            ImageIO.write((RenderedImage) image, "png", os);
+            InputStream fis = new ByteArrayInputStream(os.toByteArray());
+            return imageHasher.getHash(fis);
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     /***
@@ -87,7 +108,7 @@ public class Controller implements Initializable {
     Photo bestPhoto(Photo a, Photo b) {
         // TODO: Just output a message for the time being. We'll allow the user
         // to pick which photo to keep later on.
-//        imageHasher.getHash(a.getImage().g)
+        
         System.out.printf("Found duplicate photo; '%s' and '%s'\n", a.getUrl(), b.getUrl());
 
         return a;
@@ -115,16 +136,32 @@ public class Controller implements Initializable {
                     // encountered this photo (we have a duplicate). We need
                     // to handle the conflict by keeping the best image in
                     // the map.
+
                     if (distinctPhotos.containsKey(hash)) {
                         LOGGER.info("Distinct Photo '" + distinctPhotos.values() + "' with Hash: '" + hash);
                         Photo other = distinctPhotos.get(hash);
                         distinctPhotos.put(hash, bestPhoto(photo, other));
                     }
+                    else
+                    {
+                        distinctPhotos.put(hash, photo);
+                    }
+
+                    printHashMap(distinctPhotos);
                 });
 
         // distinctPhotos should now be populated with distinct photos from the
         // source folder specified. We'll proceed to copy those images into the
         // target folder (don't delete photos for now, let the user do that).
 
+    }
+
+    private void printHashMap(Map<String, Photo> distinctPhotos)
+    {
+        System.out.println("Printing Map");
+        for (Map.Entry<String, Photo> entry : distinctPhotos.entrySet())
+        {
+            System.out.println(entry.getKey() + " : " + entry.getValue().getUrl());
+        }
     }
 }

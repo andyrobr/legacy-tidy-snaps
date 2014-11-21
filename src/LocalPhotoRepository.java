@@ -1,4 +1,5 @@
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -43,8 +44,11 @@ public class LocalPhotoRepository implements PhotoRepository
                         if (!path.isAbsolute()) {
                             path = path.toAbsolutePath();
                         }
-                        return new Photo(path.toString(), ImageIO.read(path.toFile()));
+                        Image img = ImageIO.read(path.toFile());
+                        return new Photo(path.toString(), img);
                     } catch (IOException e) {
+                        System.err.println("BITCH LOOK HERE");
+                        e.printStackTrace();
                     }
 
                     return null;
