@@ -16,14 +16,13 @@ import java.awt.*;
 import java.awt.image.RenderedImage;
 import java.io.*;
 import java.net.URL;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
-public class Controller implements Initializable {
-    private static final Logger LOGGER = Logger.getLogger(Controller.class.getName());
+public class AppController implements Initializable {
+    private static final Logger LOGGER = Logger.getLogger(AppController.class.getName());
 
     @FXML
     private Button folderBrowseBtn;
@@ -116,7 +115,7 @@ public class Controller implements Initializable {
         
         System.out.printf("Found duplicate photo; '%s' and '%s'\n", a.getUrl(), b.getUrl());
 
-        DialogController dialogController = new DialogController();
+        DialogController dialogController = new DialogController(this);
         dialogController.setPhotos(a, b);
 
         Parent root = null;
@@ -138,23 +137,15 @@ public class Controller implements Initializable {
         dialog.setScene(scene);
         dialog.showAndWait();
 
-//        try
-//        {
-//            Parent root = FXMLLoader.load(getClass().getResource("dialogue.fxml"));
-//
-//            Scene scene = new Scene(root, 320, 240);
-//
-//            Stage dialog = new Stage();
-//            dialog.initStyle(StageStyle.UTILITY);
-//            dialog.setScene(scene);
-//            dialog.show();
-//
-//        } catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
+        // Delete the photo that is not the best.
+        Photo bestPhoto = dialogController.getBestPhoto();
 
-        return a;
+        File toDelete;
+
+        toDelete = new File(bestPhoto.equals(a) ? b.getUrl() : a.getUrl());
+        toDelete.delete();
+
+        return bestPhoto;
     }
 
     /***
