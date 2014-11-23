@@ -115,7 +115,7 @@ public class AppController implements Initializable {
         
         System.out.printf("Found duplicate photo; '%s' and '%s'\n", a.getUrl(), b.getUrl());
 
-        DialogController dialogController = new DialogController(this);
+        DialogController dialogController = new DialogController();
         dialogController.setPhotos(a, b);
 
         Parent root = null;
@@ -139,6 +139,9 @@ public class AppController implements Initializable {
 
         // Delete the photo that is not the best.
         Photo bestPhoto = dialogController.getBestPhoto();
+
+        // Neither of the photos were selected.
+        if (bestPhoto == null) return null;
 
         File toDelete;
 
@@ -180,22 +183,11 @@ public class AppController implements Initializable {
                     {
                         distinctPhotos.put(hash, photo);
                     }
-
-                    printHashMap(distinctPhotos);
                 });
 
         // distinctPhotos should now be populated with distinct photos from the
         // source folder specified. We'll proceed to copy those images into the
         // target folder (don't delete photos for now, let the user do that).
 
-    }
-
-    private void printHashMap(Map<String, Photo> distinctPhotos)
-    {
-        System.out.println("Printing Map");
-        for (Map.Entry<String, Photo> entry : distinctPhotos.entrySet())
-        {
-            System.out.println(entry.getKey() + " : " + entry.getValue().getUrl());
-        }
     }
 }

@@ -1,15 +1,14 @@
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.*;
+import javafx.scene.image.ImageView;
 
 import javax.imageio.ImageIO;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.image.RenderedImage;
 import java.io.*;
 import java.net.URL;
 import java.time.Instant;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -43,24 +42,14 @@ public class DialogController implements Initializable
 
     private Photo best;
 
-    private final AppController appController;
-    private Photo bestPhoto;
-
-    public DialogController(AppController appController)
-    {
-        this.appController = appController;
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
         File fileA = new File(a.getUrl());
         File fileB = new File(b.getUrl());
 
-
         Date dateA = Date.from(Instant.ofEpochMilli(fileA.lastModified()));
         Date dateB = Date.from(Instant.ofEpochMilli(fileB.lastModified()));
-//        new Date(fileA.lastModified());
 
         Image imageA = a.getImage();
         Image imageB = b.getImage();
