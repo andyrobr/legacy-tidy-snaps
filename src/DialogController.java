@@ -6,11 +6,11 @@ import javafx.scene.image.*;
 import javax.imageio.ImageIO;
 import java.awt.Image;
 import java.awt.image.RenderedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.net.URL;
+import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class DialogController implements Initializable
@@ -54,11 +54,19 @@ public class DialogController implements Initializable
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
+        File fileA = new File(a.getUrl());
+        File fileB = new File(b.getUrl());
+
+
+        Date dateA = Date.from(Instant.ofEpochMilli(fileA.lastModified()));
+        Date dateB = Date.from(Instant.ofEpochMilli(fileB.lastModified()));
+//        new Date(fileA.lastModified());
+
         Image imageA = a.getImage();
         Image imageB = b.getImage();
 
-        labelPixel1.setText(a.getUrl());
-        labelPixel2.setText(b.getUrl());
+        labelPixel1.setText(fileA.getName());
+        labelPixel2.setText(fileB.getName());
 
         labelRes1.setText(imageA.getWidth(null) + "x" + imageA.getHeight(null));
         labelRes2.setText(imageB.getWidth(null) + "x" + imageB.getHeight(null));
@@ -83,6 +91,9 @@ public class DialogController implements Initializable
         viewArea1.setPreserveRatio(false);
         viewArea2.setImage(new javafx.scene.image.Image(fisB));
         viewArea2.setPreserveRatio(false);
+
+        labelDate1.setText(dateA.toString());
+        labelDate2.setText(dateB.toString());
 
         viewArea1.setOnMouseClicked(s -> {
             best = a;
