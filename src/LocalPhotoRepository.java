@@ -17,6 +17,7 @@ public class LocalPhotoRepository implements PhotoRepository
     static {
         supportedExtensions.add("png");
         supportedExtensions.add("jpg");
+        supportedExtensions.add("jpeg");
     }
 
     public LocalPhotoRepository(String folder, boolean recursive)
@@ -47,7 +48,6 @@ public class LocalPhotoRepository implements PhotoRepository
                         Image img = ImageIO.read(path.toFile());
                         return new Photo(path.toString(), img);
                     } catch (IOException e) {
-                        System.err.println("BITCH LOOK HERE");
                         e.printStackTrace();
                     }
 
@@ -56,7 +56,7 @@ public class LocalPhotoRepository implements PhotoRepository
     }
     private boolean filterImageOnly(Path path){
         String pathStr = path.toString();
-        String extension = pathStr.substring(pathStr.lastIndexOf('.')+1);
+        String extension = pathStr.substring(pathStr.lastIndexOf('.')+1).toLowerCase();
 
         return supportedExtensions.contains(extension);
     }
